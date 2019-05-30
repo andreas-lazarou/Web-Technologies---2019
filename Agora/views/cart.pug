@@ -1,0 +1,49 @@
+extends layout3.pug
+block content
+  .new-content
+    .minimum-area.container
+      .basket-row
+        .column-50
+          .container
+            form(method='post',action='/order')
+              h3 Payment
+              label(for='cname') Name on Card
+              input#cname(type='text', name='cardname', placeholder='John Papadopoulos',required='')
+              label(for='ccnum') Credit card number
+              input#ccnum(type='text', name='cardnumber', placeholder='XXX-XXX-XXXX-XXXX',required='')
+              label(for='expmonth') Exp Month
+              input#expmonth(type='text', name='expmonth', placeholder='September',required='')
+              label(for='expyear') Exp Year
+              input#expyear(type='text', name='expyear', placeholder='2021',required='')
+              label(for='cvv') CVV
+              input#cvv(type='text', name='cvv', placeholder='XXX',required='')
+              h3 Shipping Address
+              label(for='adr')  Address
+              input#adr(type='text', name='address', placeholder='75 Woodland Rd',required='')
+              label(for='city')  City
+              input#city(type='text', name='city', placeholder='Bristol',required='')
+              label(for='postcode') postcode
+              input#postcode(type='text', name='postcode', placeholder='BS8 1UB',required='')
+              input.btn(type='submit', value='Checkout')
+        .column-50
+          .container
+            h4
+              p
+                span.description-label Book Title
+                span.price-label GBP
+                span.qty-label Qty
+            for result in results
+              p
+              form( method='post', action='/product',id= result['BookID'])
+                input#BookID(type='hidden', name='BookID', value= result['BookID'])
+                a(onclick="document.getElementById("+ result['BookID'] + ").submit();") #{result['title']}
+                span.price #{result['price']}
+                span.qty #{result['Qty']}
+            hr
+            h4
+              p
+                span.description-basket  Basket
+                span.total-price #{total_price}
+                span.total-qty #{total_quantity}
+            form( method='post', action='/cart/empty',id='empty')
+            button.btn(onclick="document.getElementById('empty').submit();")  Clear Basket

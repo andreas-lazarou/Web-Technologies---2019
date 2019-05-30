@@ -1,0 +1,47 @@
+extends layout3.pug
+block content
+  .new-content
+    .center-wrapper
+      .minimum-area.container.no-padding
+        .order.white
+          .order-welcome
+            h1.thank-you  Thank you
+            span.user-name.main-text #{username}
+          hr
+          .container.small-padding
+            .shipping-details
+              h2  Shipping Address
+              .info
+                b.size  Address:
+                span.order-address  #{address}
+              .info
+                b  City:
+                span.order-address  #{city}
+              .info
+                b  Postcode:
+                span.order-address  #{postcode}
+          hr
+          .container.small-padding
+            .order-details
+              h2  Order Details
+              h4
+                p
+                  span.description-label  Book Title
+                  span.price-label GBP
+                  span.qty-label Qty
+              for result in results
+                p
+                form( method='post', action='/product',id= result['BookID'])
+                  input#BookID(type='hidden', name='BookID', valsue= result['BookID'])
+                  a(onclick="document.getElementById("+ result['BookID'] + ").submit();") #{result['title']}
+                  span.price #{result['price']}
+                  span.qty #{result['Qty']}
+              h4
+                p
+                  span.description-basket  Total
+                  span.total-price #{total_price}
+                  span.total-qty #{total_quantity}
+          hr
+          .bye-message
+            button.btn.welcome-button(onclick="window.location.href = '/';")  Browse our Products
+            h3  See You Soon! 

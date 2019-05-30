@@ -1,0 +1,44 @@
+extends layout2.pug
+block content
+  .new-content
+    .center-wrapper
+      .minimum-area.container
+        form.form-section(method='post')
+          h1  Register
+          hr
+          label.agora-label(for='username')  Username
+          input#username.agora-input(type='text', name='username')
+          label.agora-label(for='username')  Email
+          input#email.agora-input(type='email', name='email')
+          label.agora-label(for='password')  Password
+          input#password.agora-input(type='password', name='password')
+          label.agora-label(for='confirm_password')  Confirm Password
+          input#confirm-password.agora-input(type='password', name='confirm_password')
+          hr
+          button#test1.agora-button-disabled(type='submit', disabled='') Register
+          .sign-area
+            | By clicking Register, you agree to our
+            a.sing-link(href='/termsandconditions') Terms & Conditions
+            | .
+        #password-validator-block.password-invalid
+          h3 Password must contain: 
+          p#letter.password-checker-invalid
+            | A 
+            em lowercase
+            |  letter
+          p#number.password-checker-invalid
+            | A 
+            em number
+          p#length.password-checker-invalid
+            | A minimum of 
+            em 6 characters
+        #confirm-password-validator-block.password-invalid
+          h3 Passwords must: 
+          p#confirm-pass.password-checker-invalid
+            em Match
+        h3= h3 
+        p #{error1} 
+        p #{error2} 
+        p #{error3} 
+block scripts
+  script(src='/javascripts/passwordValidator.js')

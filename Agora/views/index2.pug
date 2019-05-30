@@ -1,0 +1,52 @@
+extends layout3.pug
+block content
+  // Main body
+  .new-content.additional-padding
+    .minimum-area.container
+      .slideshow
+        for result in results_romance
+          .slides.fade
+            img.slide-image(src=result['image'])
+        for result in results_adventure
+          .slides.fade
+            img.slide-image(src=result['image'])
+        for result in results_crime
+          .slides.fade
+            img.slide-image(src=result['image'])
+      .main-message
+        h1.main-body.dark Browse our Books
+      .portfolio
+        #portfolio-button.portfolio-button
+          button.button-item.active(onclick="selection('all')")  Show all
+          button.button-item(onclick="selection('crime')")  Crime
+          button.button-item(onclick="selection('romance')")  Romance
+          button.button-item(onclick="selection('adventure')")  Adventure
+        // Portfolio Gallery Grid
+        .portfolio-row
+          for crime in results_crime
+            .portfolio-column.crime
+            
+              .portfolio-content
+
+                form( method='post', action='/product',id= crime['BookID'])
+                  input#BookID(type='hidden', name='BookID', value= crime['BookID'])
+                  a(onclick="document.getElementById("+ crime['BookID'] + ").submit();") 
+                    img.img-size(src=crime['image'])
+          for romance in results_romance
+            .portfolio-column.romance
+              .portfolio-content
+                form( method='post', action='/product',id= romance['BookID'])
+                  input#BookID(type='hidden', name='BookID', value= romance['BookID'])
+                  a(onclick="document.getElementById("+ romance['BookID'] + ").submit();") 
+                    img.img-size(src=romance['image'])
+                    
+          for adventure in results_adventure
+            .portfolio-column.adventure
+              .portfolio-content
+                form( method='post', action='/product',id= adventure['BookID'])
+                  input#BookID(type='hidden', name='BookID', value= adventure['BookID'])
+                  a(onclick="document.getElementById("+ adventure['BookID'] + ").submit();") 
+                    img.img-size(src=adventure['image'])
+block scripts
+  script(src='/javascripts/slideShow.js')
+  script(src='/javascripts/portfolio.js')

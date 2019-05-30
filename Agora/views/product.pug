@@ -1,0 +1,24 @@
+extends layout3.pug
+block content
+  .new-content
+    .center-wrapper
+      .minimum-area.container
+        .book.white
+          img.book-image(src= books[0]['image'])
+          h2.book-title #{books[0]['title']}
+          h3.book-author #{books[0]['author']}
+          h3.book-year #{books[0]['year']}
+          h4.book-price Price:  
+            span.book-price #{books[0]['price']} GBP                   
+          .description-wrapper
+            a#show.btn.button-show(href='#show')  Show more
+            a#hide.btn.button-hide(href='#hide')  Hide
+            .description-panel
+              p.book-description #{books[0]['description']}
+            .description-fade
+
+          form( method='post', action='/product/addToBasket',id='add')
+            input#BookID(type='hidden', name='BookID', value= books[0]['BookID'])
+            .quantity
+              input.input(type='number', name='quantity', min='1', max='999', value='1',required='')
+            button.book-button(type='submit') Add to Basket

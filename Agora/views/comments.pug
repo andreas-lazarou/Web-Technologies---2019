@@ -1,0 +1,26 @@
+extends layout3.pug
+block content
+  .new-content
+    .center-wrapper
+      .minimum-area.container
+        form.form-section.white.bottom(method='post')
+          h1  Comments
+          textarea.agora-textarea(name='comment', placeholder='Insert Text..', required='')
+          button#button-test.agora-button-enabled.post(type='submit')  Post
+        
+        .form-section.white.comment-list
+          for employee in results
+            .comment
+
+              h2.comment-user #{employee['username']}
+              p.comment-time  #{employee['date']}
+              p.comment-text #{employee['comment']}
+        form( method='post',action='/comments/show5less',id='less')
+        form( method='post',action='/comments/show5more',id='more')
+        form( method='post', action='/comments/hide',id='hide')
+        .form-section.white.comment-button
+          button.agora-button-enabled.less(onclick="document.getElementById('less').submit();") ← 
+          button.agora-button-enabled.more(onclick="document.getElementById('more').submit();") → 
+          br
+          br
+          button.agora-button-enabled.hide(onclick="document.getElementById('hide').submit();") Hide all Comments

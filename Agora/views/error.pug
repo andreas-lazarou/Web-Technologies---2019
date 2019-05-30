@@ -1,0 +1,10 @@
+extends layout2.pug
+block content
+
+  .new-content.additional-padding
+    .minimum-area.container
+      .main-message
+        h1.main-body= error.status
+        p.main-text= message
+      .png-animation
+        img.pngAgora.error(src='/images/error404.png', alt='Book1')

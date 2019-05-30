@@ -1,0 +1,54 @@
+extends layout3.pug
+block content
+  .new-content
+    .center-wrapper
+      .minimum-area.container.user-display
+        .user-white
+          .form-section.white.user
+            img.user-avatar-image(src='/images/agora-avatar-user.png')
+            .username
+              h2 Username
+              span.user-name.main-text #{username}
+            .email
+              h2 Email
+              span.user-email.main-text #{email}
+            .button
+              button#update-email.btn.update-email(type='submit', onclick='displayEmailUpdate()')  Update Email
+            .button
+              button#update-password.btn.update-password(type='submit', onclick='displayPasswordUpdate()')  Update Password
+          #wrapper.center-wrapper.display-wrapper
+            #wrap-update-email.form-section.white.user.hide-email
+              hr
+              form.form-section.white(method='post',action='/userprofile/email')
+                h2  Update Email
+                label.agora-label(for='username')  Email
+                input#email.agora-input(type='text', name='email')
+                button.agora-button-enabled(type='submit')  Update
+            #wrap-update-password.form-section.white.user.hide-password
+              hr
+              form.form-section.white(method='post',action='/userprofile/password')
+                h2  Update Password
+                label.agora-label(for='password')  New Password
+                input#password.agora-input(type='password', name='password')
+                label.agora-label(for='confirm-password')  Confirm Password
+                input#confirm-password.agora-input(type='password', name='confirm-password')
+                button#test1.agora-button-disabled(type='submit', disabled='')  Update
+              #password-validator-block.password-invalid
+                h3 Password must contain: 
+                p#letter.password-checker-invalid
+                  | A 
+                  em lowercase
+                  |  letter
+                p#number.password-checker-invalid
+                  | A 
+                  em number
+                p#length.password-checker-invalid
+                  | A minimum of 
+                  em 6 characters
+              #confirm-password-validator-block.password-invalid
+                h3 Passwords must: 
+                p#confirm-pass.password-checker-invalid
+                  em Match
+block scripts                 
+  script(src='/javascripts/update_profile.js')
+  script(src='/javascripts/passwordValidator.js')

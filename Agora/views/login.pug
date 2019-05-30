@@ -1,0 +1,23 @@
+extends layout2.pug
+block content
+  .new-content
+    .center-wrapper
+      .minimum-area.container
+        form.form-section(method="post")
+          h1  Sign In
+          hr
+          label.agora-label(for='username')  Username
+          input#username.agora-input(type='text', name='username')
+          label.agora-label(for='password')  Password
+          input#password.agora-input(type='password', name='password')
+          hr
+          button#check.agora-button-disabled(type='submit', disabled='') Sign In
+          label.agora-label
+          
+          .sign-area
+            | New to Agora?
+            a.sing-link(href='/register') Register now
+            | .
+        h3= h3
+block scripts
+  script(src='/javascripts/login_validate.js')
